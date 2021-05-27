@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class ZCommitController {
     }
 
     @RequestMapping(value = "/commit", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<Commit>> search(@Valid CommitRequest request) {
+    public DataResponse<Iterable<Commit>> search(@Valid @ModelAttribute CommitRequest request) {
         return commitService.search(request);
     }
 

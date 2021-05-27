@@ -19,6 +19,7 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.UiConfiguration;
+import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -45,12 +46,13 @@ public class Application extends SpringBootServletInitializer {
                 .paths(regex("/.*"))
                 .build()
                 .pathMapping("/")
-                .apiInfo(metadata());
+                .apiInfo(metadata())
+                .forCodeGeneration(true);
     }
 
     @Bean
     public UiConfiguration uiConfig() {
-        return UiConfiguration.DEFAULT;
+        return UiConfigurationBuilder.builder().build();
     }
 
     private ApiInfo metadata() {

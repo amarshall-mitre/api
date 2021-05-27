@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ public class DataSyncController {
 
 
     @RequestMapping(value = "/datasync/refresh", method = GET, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<DataSyncResponse> refresh(@Valid DataSyncRequest request) throws HygieiaException {
+    public ResponseEntity<DataSyncResponse> refresh(@Valid @ModelAttribute DataSyncRequest request) throws HygieiaException {
         DataSyncResponse response =  dataSyncService.refresh(request);
         return ResponseEntity
                 .status(HttpStatus.OK)

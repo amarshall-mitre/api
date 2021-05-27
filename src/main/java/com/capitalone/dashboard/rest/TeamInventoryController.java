@@ -5,6 +5,7 @@ import com.capitalone.dashboard.model.TeamInventory;
 import com.capitalone.dashboard.request.TeamInventoryRequest;
 import com.capitalone.dashboard.service.TeamInventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class TeamInventoryController {
 
     @RequestMapping(value = "/teamInventory", method = GET,
             produces = APPLICATION_JSON_VALUE)
-    public DataResponse<TeamInventory> getTeamWidgetData(@Valid TeamInventoryRequest request) {
+    public DataResponse<TeamInventory> getTeamWidgetData(@Valid @ModelAttribute TeamInventoryRequest request) {
         String teamName = request.getTeamName();
         String teamId = request.getTeamId();
         DataResponse<TeamInventory> teamInventory = teamInventoryService.getTeamData(teamName,teamId);

@@ -18,8 +18,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -393,7 +395,7 @@ public class DashboardController {
     @RequestMapping(value = "/dashboard/page/filter", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Dashboard>> dashboardByTitlePage(@RequestParam(value = "search", required = false, defaultValue = "") String search,
                                                                 @RequestParam(value = "type", required = false, defaultValue = "") String type,
-                                                                Pageable pageable) throws HygieiaException {
+                                                                @PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) throws HygieiaException {
         Page<Dashboard> pageDashboardItems = dashboardService.getDashboardByTitleWithFilter(search, type, pageable);
         return ResponseEntity
                 .ok()
@@ -420,7 +422,7 @@ public class DashboardController {
     @RequestMapping(value = "/dashboard/page", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Dashboard>> dashboardByPage(@RequestParam(value = "search", required = false, defaultValue = "") String search,
                                                            @RequestParam(value = "type", required = false, defaultValue = "") String type,
-                                                           Pageable pageable) {
+                                                           @PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) {
         Page<Dashboard> pageDashboardItems = dashboardService.findDashboardsByPage(type, pageable);
         return ResponseEntity
                 .ok()
@@ -438,7 +440,7 @@ public class DashboardController {
     @RequestMapping(value = "/dashboard/mydashboard/page", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Dashboard>> myDashboardByPage(@RequestParam(value = "username", required = false, defaultValue = "") String username,
                                                              @RequestParam(value = "type", required = false, defaultValue = "") String type,
-                                                             Pageable pageable) {
+                                                             @PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) {
         Page<Dashboard> pageDashboardItems = dashboardService.findMyDashboardsByPage(type, pageable);
         return ResponseEntity
                 .ok()
@@ -474,7 +476,7 @@ public class DashboardController {
     @RequestMapping(value = "/dashboard/mydashboard/page/filter", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Dashboard>> myDashboardByTitlePage(@RequestParam(value = "search", required = false, defaultValue = "") String search,
                                                                   @RequestParam(value = "type", required = false, defaultValue = "") String type,
-                                                                  Pageable pageable) throws HygieiaException {
+                                                                  @PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) throws HygieiaException {
         Page<Dashboard> pageDashboardItems = dashboardService.getMyDashboardByTitleWithFilter(search, type, pageable);
         return ResponseEntity
                 .ok()

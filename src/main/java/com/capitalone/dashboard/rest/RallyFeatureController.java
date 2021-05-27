@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +34,7 @@ public class RallyFeatureController {
 	}
 
 	@RequestMapping(value = "/rally", method = GET, produces = APPLICATION_JSON_VALUE)
-	public List<Map<String, Object>> getRallyWidgetData(@Valid RallyFeatureRequest request,@PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) {
+	public List<Map<String, Object>> getRallyWidgetData(@Valid @ModelAttribute RallyFeatureRequest request,@PageableDefault(size = Integer.MAX_VALUE) Pageable pageable) {
 		List<RallyFeature> currentIterations = new ArrayList<>();
 		List<Map<String, Object>> consolidatedIterationData = new ArrayList<>();
 

@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class GitRequestController {
     }
 
    @RequestMapping(value = "/gitrequests/type/{type}/state/{state}", method = GET, produces = APPLICATION_JSON_VALUE)
-   public DataResponse<Iterable<GitRequest>> search(@Valid GitRequestRequest request,
+   public DataResponse<Iterable<GitRequest>> search(@Valid @ModelAttribute GitRequestRequest request,
                                                    @PathVariable String type,
                                                      @PathVariable String state)
     {

@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +50,7 @@ public class DefaultTestResultController {
     }
 
     @RequestMapping(value = "/quality/test", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<TestResult>> qualityData(@Valid TestResultRequest request) {
+    public DataResponse<Iterable<TestResult>> qualityData(@Valid @ModelAttribute TestResultRequest request) {
         return testResultService.search(request);
     }
 

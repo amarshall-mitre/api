@@ -9,6 +9,7 @@ import com.capitalone.dashboard.service.BinaryArtifactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class BinaryArtifactController {
     }
 
     @RequestMapping(value = "/artifact", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<BinaryArtifact>> search(@Valid BinaryArtifactSearchRequest request) {
+    public DataResponse<Iterable<BinaryArtifact>> search(@Valid @ModelAttribute BinaryArtifactSearchRequest request) {
         return artifactService.search(request);
     }
 

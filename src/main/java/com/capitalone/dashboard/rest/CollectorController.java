@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -134,7 +135,7 @@ public class CollectorController {
 
 
     @RequestMapping(value = "/collector/item/static-analysis/cmdb", method = GET, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getCmdbByStaticAnalysis(@Valid String collectorName, @Valid String projectName) {
+    public ResponseEntity<Object> getCmdbByStaticAnalysis(@Valid @RequestParam String collectorName, @Valid @RequestParam String projectName) {
         Object response;
         try {
             response = collectorService.getCmdbByStaticAnalysis(collectorName, projectName);

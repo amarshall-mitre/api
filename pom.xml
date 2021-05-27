@@ -75,7 +75,7 @@
         <logback.version>1.2.3</logback.version>
         <mongodb.version>3.6.4</mongodb.version>
         <jjwt.version>0.6.0</jjwt.version>
-        <springfox.version>2.4.0</springfox.version>
+        <springfox.version>2.9.2</springfox.version>
         <assertj.version>3.9.0</assertj.version>
 
         <!-- Plugins -->
@@ -199,8 +199,13 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${springfox.version}</version>
         </dependency>
-
-        <!-- Test Deps -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-data-rest</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+	
+	<!-- Test Deps -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>

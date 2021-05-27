@@ -9,6 +9,7 @@ import com.capitalone.dashboard.service.LibraryPolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,7 @@ public class LibraryPolicyController {
     }
 
     @RequestMapping(value = "/libraryPolicy", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<List<LibraryPolicyResult>> libraryPolicySearch(@Valid LibraryPolicyRequest request) {
+    public DataResponse<List<LibraryPolicyResult>> libraryPolicySearch(@Valid @ModelAttribute LibraryPolicyRequest request) {
         return libraryPolicyService.search(request);
     }
 }

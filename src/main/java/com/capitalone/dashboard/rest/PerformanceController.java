@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,18 +41,18 @@ public class PerformanceController {
     }
 
     @RequestMapping(value = "/performance", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<Performance>> performanceData (@Valid PerformanceSearchRequest request) {
+    public DataResponse<Iterable<Performance>> performanceData (@Valid @ModelAttribute PerformanceSearchRequest request) {
         return performanceService.search(request);
     }
 
     @RequestMapping(value = "/performance/application", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<Performance>> searchApplicationPerformance(@Valid PerformanceSearchRequest request) {
+    public DataResponse<Iterable<Performance>> searchApplicationPerformance(@Valid @ModelAttribute PerformanceSearchRequest request) {
         request.setType(PerformanceType.ApplicationPerformance);
         return performanceService.search(request);
     }
 
     @RequestMapping(value = "/performance/infrastructure", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<Performance>> searchAInfrastructurePerformance(@Valid PerformanceSearchRequest request) {
+    public DataResponse<Iterable<Performance>> searchAInfrastructurePerformance(@Valid @ModelAttribute PerformanceSearchRequest request) {
         request.setType(PerformanceType.InfrastructurePerformance);
         return performanceService.search(request);
     }

@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,12 +48,12 @@ public class CodeQualityController {
     }
 
     @RequestMapping(value = "/quality", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<CodeQuality>> qualityData(@Valid CodeQualityRequest request) {
+    public DataResponse<Iterable<CodeQuality>> qualityData(@Valid @ModelAttribute CodeQualityRequest request) {
         return codeQualityService.search(request);
     }
 
     @RequestMapping(value = "/quality/static-analysis", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<CodeQuality>> qualityStaticAnalysis(@Valid CodeQualityRequest request) {
+    public DataResponse<Iterable<CodeQuality>> qualityStaticAnalysis(@Valid @ModelAttribute CodeQualityRequest request) {
         request.setType(CodeQualityType.StaticAnalysis);
         return codeQualityService.search(request);
     }
@@ -87,7 +88,7 @@ public class CodeQualityController {
     }
 
     @RequestMapping(value = "/quality/security-analysis", method = GET, produces = APPLICATION_JSON_VALUE)
-    public DataResponse<Iterable<CodeQuality>> qualitySecurityAnalysis(@Valid CodeQualityRequest request) {
+    public DataResponse<Iterable<CodeQuality>> qualitySecurityAnalysis(@Valid @ModelAttribute CodeQualityRequest request) {
         request.setType(CodeQualityType.SecurityAnalysis);
         return codeQualityService.search(request);
     }
